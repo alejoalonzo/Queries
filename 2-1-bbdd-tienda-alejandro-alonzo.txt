@@ -1,0 +1,234 @@
+
+/* 1. Obtener todos los datos de los productos de la tienda  */
+
+SELECT*
+FROM articulos
+
+
+/* 2. Obtener los nombres de los productos de la tienda */
+
+SELECT articulos.nombre
+FROM articulos
+
+
+/* 3. Obtener los nombres y precio de los productos de la tienda */
+
+SELECT articulos.nombre, articulos.precio 
+FROM articulos
+
+
+/* 4. Obtener los nombres de los artículos sin repeticiones */
+
+SELECT DISTINCT articulos.nombre
+FROM articulos
+
+
+/* 5. Obtener todos los datos del artículo cuya clave de producto es ‘5’  */
+
+SELECT *
+FROM articulos
+WHERE clave_articulo = 5
+
+
+/*  6. Obtener todos los datos del artículo cuyo nombre del producto es ‘Teclado’ */
+
+SELECT * 
+FROM articulos
+WHERE articulos.nombre = "teclado"
+
+
+
+/* 7. Obtener todos los datos de la Memoria RAM y Memoria USB  */
+
+
+SELECT * 
+FROM articulos
+WHERE articulos.nombre = "Memoria RAM" 
+OR articulos.nombre = "Memoria USB"
+
+
+
+/* 8. Obtener todos los datos de los artículos que empiezan con ‘M’  */
+
+SELECT * 
+FROM articulos
+WHERE articulos.nombre LIKE "M%"
+
+
+
+/* 9. Obtener el nombre de los productos donde el precio sea 100 */
+
+SELECT articulos.nombre, precio
+FROM articulos
+WHERE articulos.precio = 100
+
+
+
+/* 10. Obtener el nombre de los productos donde el precio sea mayor a 200 */
+
+SELECT articulos.nombre, precio
+FROM articulos
+WHERE articulos.precio >200
+
+
+
+/* 11. Obtener todos los datos de los artículos cuyo precio este entre 100 y 350 */
+
+SELECT *
+FROM articulos
+WHERE precio BETWEEN 100 AND 350
+
+
+
+/* 12. Obtener el precio medio de todos los productos  */
+
+SELECT  AVG (precio) 
+AS Media_Precio 
+FROM articulos
+
+
+
+/* 13. Obtener el precio medio de los artículos cuyo código de fabricante sea 2  */
+
+SELECT articulos.clave_fabricante, AVG (precio) 
+AS Media_Precio 
+FROM articulos 
+GROUP BY articulos.clave_fabricante
+HAVING articulos.clave_fabricante = 2
+
+
+/* 14. Obtener el nombre y precio de los artículos ordenados por Nombre */
+
+SELECT articulos.nombre, precio
+FROM articulos
+ORDER BY articulos.nombre
+
+
+
+
+/*  15. Obtener todos los datos de los productos ordenados descendentemente por Precio */
+
+SELECT *
+FROM articulos
+ORDER BY precio DESC
+
+
+
+
+/* 16. Obtener el nombre y precio de los artículos cuyo precio sea mayor a 250 y
+ordenarlos descendentemente por precio. */
+
+SELECT articulos.nombre, precio
+FROM articulos 
+WHERE precio > 250 
+ORDER BY precio DESC
+
+
+
+/* 17. Obtener un listado completo de los productos, incluyendo por cada
+artículo los datos del artículo y del fabricante  */
+
+SELECT *
+FROM articulos JOIN fabricantes 
+ON articulos.clave_fabricante = fabricantes.clave_fabricante
+
+
+
+/* 18. Obtener la clave de producto, nombre del producto y nombre del
+fabricante de todos los productos en venta */
+
+SELECT clave_articulo, articulos.nombre, fabricantes.nombre
+FROM articulos JOIN fabricantes 
+ON articulos.clave_fabricante = fabricantes.clave_fabricante
+
+
+
+
+/* 19. Obtener el nombre y precio de los artículos donde el fabricante sea
+Logitech ordenarlos alfabéticamente por nombre del producto */
+
+SELECT articulos.nombre, precio, fabricantes.nombre
+FROM articulos JOIN fabricantes
+ON articulos.clave_fabricante = fabricantes.clave_fabricante
+WHERE fabricantes.nombre = "logitech"
+ORDER BY articulos.nombre
+
+
+
+/*  20. Obtener el nombre, precio y nombre de fabricante de los productos que
+son marca Lexar o Kingston ordenados descendentemente por precio */
+
+SELECT articulos.nombre, precio, fabricantes.nombre
+FROM articulos JOIN fabricantes
+ON articulos.clave_fabricante = fabricantes.clave_fabricante
+WHERE fabricantes.nombre = "Lexar" OR fabricantes.nombre = "Kingston"
+ORDER BY precio DESC
+
+
+
+/* 21. Añade un nuevo producto: Clave del producto 11, Altavoces de 120 del fabricante 2  */
+
+INSERT INTO articulos (clave_articulo, nombre, precio, clave_fabricante)
+VALUES (11, "Altavoces", 120, 2)
+
+
+
+/* 22. Cambia el nombre del producto 6 a ‘Impresora Laser’ */
+
+UPDATE articulos 
+SET nombre = 'Impresora Laser' 
+WHERE articulos.clave_articulo = 6
+
+
+
+/* 23. Aplicar un descuento del 10% a todos los productos. */
+
+SELECT articulos.nombre, precio, precio-(precio*0.1)
+AS Precio_10_desc
+FROM articulos
+
+
+
+/* 24. Aplicar un descuento de 10 a todos los productos cuyo precio sea mayor o
+igual a 300  */
+
+SELECT articulos.nombre, precio, precio - (precio*.1)
+AS Precio_desc
+FROM articulos
+WHERE precio>=300
+
+
+
+
+/* 25. Borra el producto numero 6  */
+
+DELETE FROM articulos 
+WHERE articulos.clave_articulo = 6
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

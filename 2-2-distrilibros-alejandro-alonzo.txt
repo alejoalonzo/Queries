@@ -1,0 +1,124 @@
+
+/*  1. Realizar una consulta que muestre Nombre, dirección, cp y provincia de
+los clientes que no son de Madrid. */
+
+SELECT clientes.Nombre, clientes.Direccion, clientes.Codigo_Postal, clientes.Provincia
+FROM clientes
+WHERE NOT clientes.Provincia = "Madrid"
+
+
+
+/* 2. Realizar una consulta que muestre todos los campos de los libros cuyo
+precio este entre 6 y 9 €. */
+
+SELECT *
+FROM libros
+WHERE Precio BETWEEN 6 AND 9
+
+
+
+/* 3. Realizar una consulta que muestre todos los campos de los libros cuyo
+autor empiece por la letra A. */
+
+SELECT * 
+FROM libros 
+WHERE Autor LIKE "A%"
+
+
+
+/* 4. Realizar una consulta que muestre todos los campos de los libros cuya
+editorial acabe en A. */
+
+SELECT * 
+FROM libros 
+WHERE Editorial LIKE "%A"
+
+
+
+/* 5. Realizar una consulta que muestre todos los campos de los libros cuyo
+autor no sea Gabriel García Márquez.  */
+
+SELECT * 
+FROM libros 
+WHERE Autor != "Gabriel García Márquez"
+
+
+
+
+/* 6. Realizar una consulta que muestre todos los campos de los pedidos con
+observaciones. */
+
+SELECT * 
+FROM pedidos
+WHERE Observaciones !=  ""
+
+
+
+/* 7. Realizar una consulta que muestre todos los campos de todos los pedidos
+que no tengan observaciones. */
+
+SELECT * 
+FROM pedidos
+WHERE Observaciones =  ""
+
+
+
+/* 8. Realizar una consulta que muestre todos los campos de los empleados
+fijos y con salario superior a 1000 €.  */
+
+SELECT * 
+FROM empleados 
+WHERE Fijo = 1 AND Salario > 1000
+
+
+
+
+
+/*  9. Realizar una consulta que muestre “Fecha de pedido”, “Código de
+empleado”, “Unidades” y “Plazo de pago” de los pedidos a partir de 30
+unidades y plazo de pago de 60 días. */
+
+SELECT Fecha_de_pedido, Codigo_de_empleado, Unidades, Plazo_de_pago
+FROM pedidos 
+WHERE Unidades >= 30
+AND Plazo_de_pago = 60
+
+
+
+
+/*  10. Realizar una consulta que muestre todos los campos de los clientes de
+Valencia Junto con los de Barcelona, ordenados por su código postal. */
+
+
+SELECT *
+FROM clientes
+WHERE clientes.Provincia IN ("Valencia", "Barcelona")
+ORDER BY clientes.Codigo_Postal
+
+
+
+
+
+/* 11. Realizar una consulta que muestre todos los campos de los libros de las
+editoriales Planeta y Salvat, ordenados por autor. */
+
+SELECT*
+FROM libros
+WHERE Editorial IN ("Planeta", "Salvat")
+ORDER BY Autor
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
